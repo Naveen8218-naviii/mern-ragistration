@@ -27,6 +27,22 @@ app.post('/ragister',(req,res)=>{
     .catch(err=>res.json(err))
 })
 
+
+app.post("/login",(req,res)=>{
+    const {email,password}=req.body
+    regismodel.findOne({email:email})
+    .then(user=>{
+        if (user) {
+            if (user.password===password) {
+                res.json("login sucessfully")
+            }
+            else{res.json("incorrect password")}
+        }
+        else{'no record exited'}
+
+    })
+})
+
 app.listen(5000,()=>{
     console.log("wegi lo connect")
 })
