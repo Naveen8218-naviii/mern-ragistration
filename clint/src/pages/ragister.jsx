@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import{ Link }from 'react-router-dom'
+import{ Link ,useNavigate}from 'react-router-dom'
+
 
 const Ragister = () => {
 
@@ -9,12 +10,19 @@ const Ragister = () => {
   const[email,setEmail]=useState()
   const[password,SetPassword]=useState()
 
-
+const navigate=useNavigate()
   const submit=(e)=>{
     e.preventDefault();
 axios.post("http://localhost:5000/ragister",{name,email,password})
-.then(result=>console.log(result))
-.catch(err=>console.log(err))
+.then(result=> {if (result.data=="Account created") {
+  alert("Account created")
+  navigate("/login")
+}
+else{
+alert("Email already exist")
+}})
+.catch(err=>{alert("something went wrong");
+console.log(err)})
   }
   return (
 

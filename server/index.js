@@ -14,12 +14,13 @@ app.post('/ragister',(req,res)=>{
     regismodel.findOne({email:email})
     .then(user=>{
         if(user){
-            res.json("already have an account")
+            res.json("exist")
         }
+
         else{
             regismodel.create({name:name,email:email,password:password})
             .then(result=>{
-                res.json("account created")
+                res.json("Account created")
             })
             .catch(err=>res.json(err))
         }
@@ -34,7 +35,7 @@ app.post("/login",(req,res)=>{
     .then(user=>{
         if (user) {
             if (user.password===password) {
-                res.json("login sucessfully")
+                res.json("success")
             }
             else{res.json("incorrect password")}
         }
