@@ -5,7 +5,7 @@ const cors=require("cors")
 const regismodel=require("./model/model")
 
 app.use(cors({
-    origin: ["https://mern-ragistration.vercel.app/"],
+    origin: ["https://mern-ragistration.vercel.app"],
     methods:["POST" , "GET"],
     credentials:true
 }
