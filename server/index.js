@@ -14,7 +14,7 @@ app.use(cors({
 app.use(express.json());
 app.options("*", cors());
 
-mongoose.connect('mongodb://127.0.0.1:27017/mern')
+mongoose.connect('mongodb+srv://naviii:nabu@cluster0.30irrxv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 
 app.post('/ragister',(req,res)=>{
     const{name,email,password}=req.body
