@@ -5,12 +5,14 @@ const cors=require("cors")
 const regismodel=require("./model/model")
 
 app.use(cors({
-    origin: ["https://mern-ragistration.vercel.app"],
-    methods:["POST" , "GET"],
-    credentials:true
+     origin: "https://mern-ragistration.vercel.app", // frontend URL
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 }
 ))
-app.use(express.json())
+app.use(express.json());
+app.options("*", cors());
 
 mongoose.connect('mongodb://127.0.0.1:27017/mern')
 
