@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const regismodel = require("./model/model");
 
-// CORS configuration
+// CORS configuration (applied globally)
 app.use(cors({
     origin: "https://mern-registration-a4vb-ntzq3f9p-...vercel.app", // Update with correct deployed URL
     methods: ["GET", "POST", "OPTIONS"],
@@ -12,14 +12,13 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
-app.options("*", cors());
 
 // MongoDB connection with error handling
 mongoose.connect('mongodb+srv://naviii:nabu@cluster0.30irrxv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("MongoDB connection error:", err));
 
-// Registration route (fixed typo)
+// Registration route
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
     regismodel.findOne({ email: email })
@@ -35,7 +34,7 @@ app.post('/register', (req, res) => {
         .catch(err => res.status(500).json({ error: err.message }));
 });
 
-// Login route with proper response
+// Login route
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
     regismodel.findOne({ email: email })
@@ -47,7 +46,7 @@ app.post("/login", (req, res) => {
                     res.json("incorrect password");
                 }
             } else {
-                res.json("no record existed"); // Fixed typo and sent as response
+                res.json("no record existed");
             }
         })
         .catch(err => res.status(500).json({ error: err.message }));
