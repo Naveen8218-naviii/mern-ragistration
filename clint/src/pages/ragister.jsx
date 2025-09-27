@@ -13,7 +13,7 @@ const Ragister = () => {
 const navigate=useNavigate()
   const submit=(e)=>{
     e.preventDefault();
-axios.post("https://mern-ragistration-api.vercel.app/ragister",{name,email,password})
+axios.post("mern-ragistration-a4vb-ntz6q3f9p-naveens-projects-f84b6de5.vercel.app/ragister",{name,email,password})
 .then(result=> {if (result.data=="Account created") {
   alert("Account created")
   navigate("/login")
